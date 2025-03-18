@@ -1,5 +1,5 @@
 from django import forms
-from .models import Article
+from .models import Article 
 
 
 class ArticleForm(forms.ModelForm): #ModelAdmin uses ModelForm by default, when you register your model
@@ -10,9 +10,10 @@ class ArticleForm(forms.ModelForm): #ModelAdmin uses ModelForm by default, when 
     def clean(self):
         data = self.cleaned_data
         title = data.get("title")
-        qs = Article.objects.filter(title__icontains=title) #This type of query will filter down our entire database for particular string that coming in here
-        if qs.exists:
-            self.add_error("title", f"\"{title}\" is already in use. Please pick another title.") 
+        if title:
+            qs = Article.objects.filter(title__iexact=title) #This type of query will filter down our entire database for particular string that coming in here
+            if qs.exists():
+                self.add_error("title", f"\"{title}\" is already in use. Please pick another title.") 
         return data 
 
 class ArticleFormOld(forms.Form):

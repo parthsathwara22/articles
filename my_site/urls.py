@@ -33,8 +33,8 @@ urlpatterns = [
     
     path('', home_view), #you can use this path as index, home, root, etc.
     path('articles/', article_search_view), 
-    path('articles/create/', article_create_view),
-    path('articles/<int:id>/', article_detail_view), #here you can direct the path of views method
+    path('articles/create/', article_create_view, name='article-create'),
+    path('articles/<slug:slug>/', article_detail_view, name='article-detail'), #here you can direct the path of views method
     path('admin/', admin.site.urls), 
     path('login/', login_view),
     path('logout/', logout_view),

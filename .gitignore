@@ -6,4 +6,4 @@ include
 lib/
 Scripts/
 __pycache__/
-*/migrations/
+
